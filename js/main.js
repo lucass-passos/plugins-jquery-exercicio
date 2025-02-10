@@ -17,33 +17,37 @@ $('#cep').mask('00000-000', {
     placeholder: '012345-678'
 })
 
-$('form').validate({
+$('section form').validate({
     rules: {
         nome: {
-            requerido: true
+            required: true
         },
         email: {
-            requerido: true,
+            required: true,
             email: true
         },
         telefone: {
-            requerido: true
+            required: true
         },
         endereco: {
-            requerido: true
+            required: true
         },
         cep: {
-            requerido: true
+            required: true
         },
         cpf: {
-            requerido: true
+            required: true
         },
     },
     submitHandler: function (form) {
+        console.log(form);
         alert("Sua requisição foi enviada para análise, parabéns pela aquisição!");
-        form.reset();
+        
     },
-    invalidHandler: function (form, validator) {
-        alert("Por favor, preencha os campos para prosseguir com a compra!");
+    invalidHandler: function (evento, validator) {
+        let camposIncorretos = validator.numberOfInvalids();
+        if (camposIncorretos) {
+            alert("Por favor, preencha os campos para prosseguir com a compra!");
+        }
     }
 })
